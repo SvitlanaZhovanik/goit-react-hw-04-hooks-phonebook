@@ -31,6 +31,7 @@ export default function App() {
     }
     setContacts(prevState => [contact, ...prevState]);
   };
+  const handleFilter = e => setFilter(e.currentTarget.value);
   const getVisibleContacts = () => {
     const normalizeFilter = filter.toLowerCase();
     return contacts.filter(contact => contact.name.toLowerCase().includes(normalizeFilter));
@@ -47,12 +48,7 @@ export default function App() {
         <Form onChange={addContact} />
       </div>
       <Section name="Contacts">
-        <Filter
-          value={filter}
-          onChange={e => {
-            setFilter(e.currentTarget.value);
-          }}
-        />
+        <Filter value={filter} onChange={handleFilter} />
         <ContactsList contacts={getVisibleContacts()} onDeleteContact={deleteContact} />
       </Section>
     </Container>
